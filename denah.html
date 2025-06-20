@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Seat Map - Cahaya Muda Indonesia</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0fdfc;
+      color: #333;
+    }
+
+    header {
+      background-color: #009688;
+      padding: 15px 30px;
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.4em;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links .active {
+      border-bottom: 2px solid white;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    main h1 {
+      font-size: 2em;
+      color: #004d40;
+      margin-bottom: 10px;
+    }
+
+    .desc {
+      font-size: 1em;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .room-section {
+      margin-bottom: 50px;
+    }
+
+    .room-section h2 {
+      color: #00695c;
+      font-size: 1.3em;
+      margin-bottom: 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .seat {
+      background-color: #e0f2f1;
+      border: 1px solid #b2dfdb;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: 0.2s;
+    }
+
+    .seat:hover {
+      background-color: #b2dfdb;
+      cursor: pointer;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">CAHAYA MUDA INDONESIA</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jadwal.html">Exam Schedule</a></li>
+
+        <li><a href="denah.html" class="active">Seat Map</a></li>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="register.html">Daftar</a></li>
+        <li><a href="kontak.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Ruang Ujian</h1>
+    
+
+    <div id="seat-container"></div>
+  </main>
+
+
+
+  <script>
+    const roomData = {
+      "Ruangan 10-1": ["Ahmad", "Budi", "Cahyo", "Dedi", "Eko", "Anisa", "Bella", "Citra", "Diah", "Erika"],
+      "Ruangan 10-2": ["Farhan", "Galih", "Hadi", "Iqbal", "Joko", "Fitri", "Gita", "Hani", "Intan", "Julia"],
+      "Ruangan 11-1": ["Arif", "Bagus", "Candra", "Dani", "Ewan", "Ayu", "Bella", "Clara", "Dewi", "Erika"],
+      "Ruangan 11-2": ["Fikri", "Guntur", "Julia", "Heru", "Irfan", "Jefri", "Fitri", "Gita", "Hani", "Intan"],
+      "Ruangan 12-1": ["Agus", "Bayu", "Cipto", "Danu", "Endra", "Ayu", "Bella", "Citra", "Dinda", "Erika"],
+      "Ruangan 12-2": ["Fikri", "Galang", "Hafiz", "Ilham", "Johan", "Fani", "Gisel", "Haniyah", "Indah", "Julia"]
+    };
+
+    function updateLocalStorageWithSeats() {
+      let siswa = JSON.parse(localStorage.getItem("siswa")) || [];
+      for (const [ruangan, siswaList] of Object.entries(roomData)) {
+        siswaList.forEach((nama, index) => {
+          const s = siswa.find(s => s.nama.toLowerCase() === nama.toLowerCase());
+          if (s) {
+            s.ruangan = ruangan;
+            s.posisi = `Meja ${index + 1}`;
+          }
+        });
+      }
+      localStorage.setItem("siswa", JSON.stringify(siswa));
+    }
+
+    function renderSeats() {
+      const container = document.getElementById("seat-container");
+      for (const [ruangan, siswaList] of Object.entries(roomData)) {
+        const section = document.createElement("section");
+        section.classList.add("room-section");
+
+        const title = document.createElement("h2");
+        title.textContent = ruangan;
+        section.appendChild(title);
+
+        const grid = document.createElement("div");
+        grid.classList.add("grid");
+
+        siswaList.forEach(nama => {
+          const seat = document.createElement("div");
+          seat.classList.add("seat");
+          seat.textContent = nama;
+          grid.appendChild(seat);
+        });
+
+        section.appendChild(grid);
+        container.appendChild(section);
+      }
+    }
+
+    updateLocalStorageWithSeats();
+    renderSeats();
+  </script>
+</body>
+</html>

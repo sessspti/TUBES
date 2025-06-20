@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Log In - Cahaya Muda Indonesia</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome CDN untuk icon input -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #2eb6a6 60%, #e9f7f6 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    /* Login window dengan efek floating dan glassmorphism */
+    .login-window {
+      background: rgba(24, 25, 28, 0.85);
+      box-shadow:
+        0 8px 32px 0 rgba(31, 38, 135, 0.25),
+        0 1.5px 8px rgba(44, 62, 80, 0.10);
+      border-radius: 18px;
+      width: 400px;
+      padding: 40px 36px 36px 36px;
+      position: relative;
+      overflow: hidden;
+      margin: 80px auto;
+    }
+
+    /* Window bar dengan tiga dot warna */
+    .window-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px 10px 18px;
+      background: #232327;
+      border-radius: 18px 18px 0 0;
+      margin: -40px -36px 32px -36px;
+    }
+
+    .window-bar .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .window-bar .red {
+      background: #ff5f56;
+    }
+
+    .window-bar .yellow {
+      background: #ffbd2e;
+    }
+
+    .window-bar .green {
+      background: #27c93f;
+    }
+
+    /* Form styling */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-form h2 {
+      color: #fff;
+      margin-bottom: 24px;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* Input group dengan icon di kiri */
+    .input-group {
+      position: relative;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px 14px 44px;
+      border: none;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.10);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: background 0.3s, border 0.3s;
+    }
+
+    .input-group input::placeholder {
+      color: #bbb;
+      font-size: 1rem;
+    }
+
+    .input-group input:focus {
+      background: rgba(255, 255, 255, 0.18);
+      border: 2px solid #2eb6a6;
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      color: #bbb;
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    /* Tombol login */
+    .login-btn {
+      width: 100%;
+      background: #2eb6a6;
+      border: none;
+      border-radius: 28px;
+      padding: 14px 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(46, 182, 166, 0.5);
+      transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+    }
+
+    .login-btn:hover {
+      background: #1e9384;
+      box-shadow: 0 6px 20px rgba(30, 147, 132, 0.7);
+      transform: scale(1.05);
+    }
+
+    /* Responsif */
+    @media (max-width: 480px) {
+      .login-window {
+        width: 90vw;
+        padding: 30px 20px 30px 20px;
+        margin: 40px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">CAHAYA MUDA INDONESIA</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jadwal.html">Exam Schedule</a></li>
+        <li><a href="denah.html">Seat Map</a></li>
+        <li><a href="login.html" class="active">Log In</a></li>
+        <li><a href="register.html">Daftar</a></li>
+        <li><a href="kontak.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="login-window" role="main" aria-label="Form Login Siswa">
+      <div class="window-bar" aria-hidden="true">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+      <form class="login-form" onsubmit="loginUser(); return false;" novalidate>
+        <h2>Login Siswa</h2>
+        <div class="input-group">
+          <span class="input-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+          <input type="text" id="username" name="username" placeholder="Username" required aria-required="true" />
+        </div>
+        <div class="input-group">
+          <span class="input-icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+          <input type="password" id="password" name="password" placeholder="Password" required aria-required="true" />
+        </div>
+        <button type="submit" class="login-btn" aria-label="Login">Log In</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

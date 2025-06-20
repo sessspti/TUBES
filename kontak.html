@@ -1,0 +1,120 @@
+<!-- kontak.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact - Cahaya Muda Indonesia</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #2eb6a6 60%, #e9f7f6 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .contact-container {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 15px 50px 36px 25px;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 1.8rem;
+      color: #222;
+    }
+
+    .contact-container p {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #444;
+      font-size: 1rem;
+    }
+
+    .contact-container input,
+    .contact-container textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      transition: border 0.3s ease;
+    }
+
+    .contact-container input:focus,
+    .contact-container textarea:focus {
+      outline: none;
+      border-color: white;
+      box-shadow: 0 0 0 2px rgba(46, 182, 166, 0.2);
+    }
+
+    .contact-container button {
+      width: 100%;
+      padding: 14px;
+      background-color: #2ea8b6;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .contact-container button:hover {
+      background-color: #1e9384;
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 600px) {
+      .contact-container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">CAHAYA MUDA INDONESIA</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jadwal.html">Exam Schedule</a></li>
+        <li><a href="denah.html">Seat Map</a></li>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="register.html">Daftar</a></li>
+        <li><a href="kontak.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contact-container">
+      <h2>Hubungi Kami</h2>
+      <p>Silakan kirim pertanyaan, saran, atau laporan kendala melalui form di bawah ini.</p>
+      <input type="text" placeholder="Nama Lengkap">
+      <input type="email" placeholder="Email">
+      <textarea rows="3" placeholder="Pesan Anda"></textarea>
+      <button>Kirim Pesan</button>
+    </div>
+  </main>
+
+</body>
+</html>

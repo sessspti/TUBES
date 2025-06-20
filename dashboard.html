@@ -1,0 +1,64 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Siswa - Cahaya Muda Indonesia</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dashboard {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 20px;
+      background-color: #fefefe;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .dashboard h2 {
+      text-align: center;
+    }
+    .dashboard p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">CAHAYA MUDA INDONESIA</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jadwal.html">Exam Schedule</a></li>
+        <li><a href="denah.html">Seat Map</a></li>
+        <li><a href="login.html">Log Out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="dashboard">
+      <h2>Selamat Datang, <span id="nama"></span>!</h2>
+      <p><strong>Kelas:</strong> <span id="kelas"></span></p>
+      <p><strong>Username:</strong> <span id="username"></span></p>
+      <p><strong>Ruangan:</strong> <span id="ruangan"></span></p>
+      <p><strong>Posisi Duduk:</strong> <span id="posisi"></span></p>
+    </div>
+  </main>
+
+  <script>
+    const akun = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!akun) {
+      alert("Silakan login terlebih dahulu.");
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("nama").textContent = akun.nama;
+      document.getElementById("kelas").textContent = akun.kelas;
+      document.getElementById("username").textContent = akun.username;
+      document.getElementById("ruangan").textContent = akun.ruangan || "-";
+      document.getElementById("posisi").textContent = akun.posisi || "-";
+    }
+  </script>
+</body>
+</html>
