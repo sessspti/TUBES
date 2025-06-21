@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Analisis Kombinatorika</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+      padding: 40px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #00695c;
+    }
+    p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .rumus {
+      background: #e0f2f1;
+      padding: 10px;
+      border-left: 4px solid #00796b;
+      font-family: 'Courier New', monospace;
+      margin-bottom: 20px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Kombinatorika dalam Aplikasi</h1>
+
+    <h2>1. Pembagian Ruangan (Kombinasi)</h2>
+    <p>
+      Dalam sistem ini, sebanyak <strong>60 siswa</strong> dari kelas 10, 11, dan 12 dibagi ke dalam <strong>6 ruangan ujian</strong> dengan kapasitas masing-masing 10 siswa. Karena urutan siswa di ruangan tidak penting untuk penempatan awal, maka digunakan <strong>kombinasi</strong>.
+    </p>
+    <div class="rumus">
+      Total kombinasi pembagian siswa:<br>
+      C(60,10) untuk tiap ruangan secara bertahap
+    </div>
+
+    <h2>2. Penempatan Posisi Duduk (Permutasi)</h2>
+    <p>
+      Setiap ruangan memiliki <strong>10 meja</strong> dan <strong>10 siswa</strong> yang duduk dalam urutan tertentu. Karena posisi duduk diperhatikan (Meja 1 berbeda dengan Meja 2), maka digunakan konsep <strong>permutasi</strong>.
+    </p>
+    <div class="rumus">
+      Banyak cara menyusun posisi duduk:<br>
+      P(10,10) = 10! = 3.628.800 cara
+    </div>
+
+    <h2>3. Pembuatan Password Unik (Permutasi Karakter)</h2>
+    <p>
+      Password siswa terdiri dari <strong>minimal 4 huruf</strong> dan <strong>2 angka</strong>. Urutan karakter memengaruhi hasil (contoh: abcd12 berbeda dengan dcba21), maka ini termasuk permutasi.
+    </p>
+    <div class="rumus">
+      Banyak kemungkinan password:<br>
+      p(36,6)=36!/30! = 1.402.410.240
+      
+    </div>
+
+    <h2>4. Jadwal Ujian (Kombinasi)</h2>
+    <p>
+      Ujian berlangsung selama <strong>5 hari</strong>, setiap hari terdiri dari <strong>2 sesi</strong> dan masing-masing kelas memiliki 10 mapel. Penjadwalan seperti ini melibatkan kombinasi waktu dan mata pelajaran. Misalkan 2 mapel dari 10 untuk hari senin:
+    </p>
+    <div class="rumus">
+      c(10,2) = 45
+    </div>
+     <p>
+      Kalau untuk <strong>5 hari</strong> kemungkinannya:
+    </p>
+    <div class="rumus">
+      c(10,2) . c(8,2) . c(6,2) . c(4,2) . c(2,2) = 45 . 28 . 15 . 6 . 1 = 113.400
+    </div>
+
+    <footer>
+     Kombinatorika dalam Kehidupan Nyata
+    </footer>
+  </div>
+</body>
+</html>

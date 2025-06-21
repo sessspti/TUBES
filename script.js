@@ -1,3 +1,38 @@
+function registerUser() {
+  const nama = document.getElementById("nama").value.trim();
+  const kelas = document.getElementById("kelas").value;
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!nama || !kelas || !username || !password) {
+    alert("Semua kolom wajib diisi.");
+    return;
+  }
+
+  // Validasi password: minimal 4 huruf dan 2 angka
+  const huruf = password.replace(/[^a-zA-Z]/g, "").length;
+  const angka = password.replace(/[^0-9]/g, "").length;
+  if (password.length < 6 || huruf < 4 || angka < 2) {
+    alert("Password harus terdiri dari minimal 4 huruf dan 2 angka.");
+    return;
+  }
+
+  const siswa = JSON.parse(localStorage.getItem("siswa")) || [];
+
+  // Cek jika username sudah digunakan
+  if (siswa.find(s => s.username === username)) {
+    alert("Username sudah digunakan, silakan pilih yang lain.");
+    return;
+  }
+
+  // Simpan data siswa baru
+  siswa.push({ nama, kelas, username, password });
+  localStorage.setItem("siswa", JSON.stringify(siswa));
+
+  alert("Pendaftaran berhasil! Silakan login.");
+  window.location.href = "login.html";
+}
+
 function loginUser() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();

@@ -130,12 +130,10 @@
       <div class="logo">CAHAYA MUDA INDONESIA</div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="jadwal.html">Exam Schedule</a></li>
-        <li><a href="denah.html">Seat Map</a></li>
-        <li><a href="login.html">Log In</a></li>
+        <li><a href="ruangan.html">Student Data</a></li>
         <li><a href="register.html" class="active">Daftar</a></li>
-        <li><a href="kontak.html">Contact</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="login.html">Log In</a></li>
+        
       </ul>
     </nav>
   </header>
@@ -179,6 +177,16 @@
       return;
     }
 
+    // Validasi password: minimal 4 huruf dan 2 angka
+    const jumlahHuruf = password.replace(/[^a-zA-Z]/g, "").length;
+    const jumlahAngka = password.replace(/[^0-9]/g, "").length;
+
+    if (password.length < 6 || jumlahHuruf < 4 || jumlahAngka < 2) {
+      pesan.style.color = 'red';
+      pesan.textContent = "Password minimal 4 huruf dan 2 angka.";
+      return;
+    }
+
     const siswa = JSON.parse(localStorage.getItem("siswa")) || [];
 
     if (siswa.some(s => s.username === username)) {
@@ -188,9 +196,7 @@
     }
 
     const newUser = { nama, kelas, username, password };
-    siswa.push(newUser);
 
-    // 🔁 Tambahkan ruangan dan posisi otomatis
     const roomData = {
       "Ruangan 10-1": ["Ahmad", "Budi", "Cahyo", "Dedi", "Eko", "Anisa", "Bella", "Citra", "Diah", "Erika"],
       "Ruangan 10-2": ["Farhan", "Galih", "Hadi", "Iqbal", "Joko", "Fitri", "Gita", "Hani", "Intan", "Julia"],
@@ -214,6 +220,7 @@
     if (!newUser.ruangan) newUser.ruangan = "-";
     if (!newUser.posisi) newUser.posisi = "-";
 
+    siswa.push(newUser);
     localStorage.setItem("siswa", JSON.stringify(siswa));
 
     pesan.style.color = 'green';
@@ -225,6 +232,7 @@
     document.getElementById("password").value = "";
   }
 </script>
+
 
 </body>
 </html>
